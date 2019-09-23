@@ -3,5 +3,7 @@ This small program for the STM32 microcontroller of the RS41 radiosonde configur
 
 I know that this system will never be as accurate as a real GPS disciplined oscillator but some sources on the internet state that it is possible to build clock generators with a stability of 0.01ppm @ 100MHz with u-blox GPS-receivers.
 
+The Drivers.zip must be extracted before opening the µVision project.
+
 More information about the RS41 hardware: https://github.com/bazjo/RS41_Hardware
 
