@@ -1,0 +1,25 @@
+--cpu Cortex-M3
+"gps_clock\startup_stm32f100xb.o"
+"gps_clock\main.o"
+"gps_clock\stm32f1xx_it.o"
+"gps_clock\stm32f1xx_hal_msp.o"
+"gps_clock\stm32f1xx_hal_gpio_ex.o"
+"gps_clock\stm32f1xx_hal_spi.o"
+"gps_clock\stm32f1xx_hal_spi_ex.o"
+"gps_clock\stm32f1xx_hal_tim.o"
+"gps_clock\stm32f1xx_hal_tim_ex.o"
+"gps_clock\stm32f1xx_hal_uart.o"
+"gps_clock\stm32f1xx_hal.o"
+"gps_clock\stm32f1xx_hal_rcc.o"
+"gps_clock\stm32f1xx_hal_rcc_ex.o"
+"gps_clock\stm32f1xx_hal_gpio.o"
+"gps_clock\stm32f1xx_hal_dma.o"
+"gps_clock\stm32f1xx_hal_cortex.o"
+"gps_clock\stm32f1xx_hal_pwr.o"
+"gps_clock\stm32f1xx_hal_flash.o"
+"gps_clock\stm32f1xx_hal_flash_ex.o"
+"gps_clock\system_stm32f1xx.o"
+--library_type=microlib --strict --scatter "GPS_clock\GPS_clock.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "GPS_clock.map" -o GPS_clock\GPS_clock.axf
