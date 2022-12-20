@@ -108,10 +108,20 @@ void tx_ublox(UART_HandleTypeDef *uart, char msg_class, char msg_id, char payloa
 	calc_checksum(payload_len, msg, &a, &b);
 	msg[payload_len + 6] = a;
 	msg[payload_len + 7] = b;
-	
-	HAL_UART_Transmit(uart, (uint8_t*) msg, 8 + payload_len, HAL_MAX_DELAY);
+
 	//Debuging
 	HAL_UART_Transmit(&huart3, (uint8_t*) msg, 8 + payload_len, HAL_MAX_DELAY);
+	HAL_UART_Transmit(uart, (uint8_t*) msg, 8 + payload_len, HAL_MAX_DELAY);
+
+	// Wait for ACK/NAK response
+	if (msg_class == 0x06) {
+		HAL_UART_Receive(uart, msg, 8 + 2, HAL_MAX_DELAY);
+		while (msg[0] != 0xB5 || msg[1] != 0x62 || msg[2] != 0x05) {
+			memmove(msg, msg + 1, 8 + 2 - 1);
+			HAL_UART_Receive(uart, &msg[8 + 2 - 1], 1, HAL_MAX_DELAY);
+		}
+		HAL_UART_Transmit(&huart3, msg, 8 + 2, HAL_MAX_DELAY);
+	}
 }
 /* USER CODE END 0 */
 
