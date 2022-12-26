@@ -44,6 +44,36 @@
 #include <string.h>
 /* USER CODE END Includes */
 
+#define UBX_CFG_NAV5_MASK_DYN (1 << 0)
+#define UBX_CFG_NAV5_MASK_MINEL (1 << 1)
+#define UBX_CFG_NAV5_MASK_POSFIXMODE (1 << 2)
+#define UBX_CFG_NAV5_MASK_DRLIM (1 << 3)
+#define UBX_CFG_NAV5_MASK_POSMASK (1 << 4)
+#define UBX_CFG_NAV5_MASK_TIMEMASK (1 << 5)
+#define UBX_CFG_NAV5_MASK_STATICHOLDMASK (1 << 6)
+#define UBX_CFG_NAV5_MASK_DGPSMASK (1 << 7)
+
+typedef struct __attribute__((__packed__)) {
+  uint16_t mask;
+  uint8_t dynModel;
+  uint8_t fixMode;
+  int32_t fixedAlt;
+  uint32_t fixedAltVar;
+  int8_t minElev;
+  uint8_t drLimit;
+  uint16_t pDop;
+  uint16_t tDop;
+  uint16_t pAcc;
+  uint16_t tAcc;
+  uint8_t staticHoldThresh;
+  uint8_t dgpsTimeOut;
+  uint8_t cnoThreshNumSVs;
+  uint8_t cnoThresh;
+  uint16_t reserved2;
+  uint32_t reserved3;
+  uint32_t reserved4;
+} UBX_CFG_NAV5;
+
 /* Private variables ---------------------------------------------------------*/
 SPI_HandleTypeDef hspi2;
 
@@ -192,6 +222,16 @@ int main(void)
 		payload[31] = 0x00;
 		tx_ublox(&huart1, 0x06, 0x31, payload, 32);
   /* USER CODE END 2 */
+
+  const UBX_CFG_NAV5 ubxCfgNav5 = {
+    .mask = UBX_CFG_NAV5_MASK_DYN | UBX_CFG_NAV5_MASK_STATICHOLDMASK,
+    .dynModel = 2,  // stationary
+    // When stationary this provides better PPS precission, but the
+    // position output is not updated any more.
+    //.staticHoldThresh = UINT8_MAX,
+    .staticHoldThresh = 0,
+  };
+  tx_ublox(&huart1, 0x06, 0x24, (uint8_t *)&ubxCfgNav5, sizeof(ubxCfgNav5));
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
