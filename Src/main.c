@@ -101,7 +101,7 @@ static void MX_USART1_UART_Init(void);
 //~~~Tobias Ecker OE3TEC 2019~~~
 //should be calculated from all fields exept sync char 1 & 2
 //Refere to u-blox 6 Receiver Description Including Protocol Specification
-void calc_checksum(uint8_t N, char Buffer[], char *a_out, char *b_out)
+void calc_checksum(uint8_t N, uint8_t Buffer[], uint8_t *a_out, uint8_t *b_out)
 {
 	uint8_t CK_A = 0, CK_B = 0, I;
 	
@@ -113,9 +113,9 @@ void calc_checksum(uint8_t N, char Buffer[], char *a_out, char *b_out)
 		*b_out = CK_B;
 	}
 }
-void tx_ublox(UART_HandleTypeDef *uart, char msg_class, char msg_id, char payload[], uint16_t payload_len)
+void tx_ublox(UART_HandleTypeDef *uart, uint8_t msg_class, uint8_t msg_id, uint8_t payload[], uint16_t payload_len)
 {
-	char msg[100], a, b;
+	uint8_t msg[100], a, b;
 	uint16_t i;
 	
 	//Header
@@ -188,7 +188,7 @@ int main(void)
   MX_SPI2_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
-	char payload[50];
+	uint8_t payload[50];
 		
 		//The red LED indecates that the device is on
 		HAL_GPIO_WritePin(GPIOB, LED_red_Pin, GPIO_PIN_RESET);

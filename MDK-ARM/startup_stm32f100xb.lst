@@ -499,12 +499,12 @@ ARM Macro Assembler    Page 8
               00000000 
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
-ork --depend=gps_clock\startup_stm32f100xb.d -ogps_clock\startup_stm32f100xb.o 
--I.\RTE\_GPS_clock -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include -IC:\Kei
-l_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include --predefine="__EVAL SETA 
-1" --predefine="__MICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 524" --p
-redefine="_RTE_ SETA 1" --predefine="STM32F10X_MD_VL SETA 1" --list=startup_stm
-32f100xb.lst startup_stm32f100xb.s
+ork --depend=.\gps_clock\startup_stm32f100xb.d -o.\gps_clock\startup_stm32f100x
+b.o -I.\RTE\_GPS_clock -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include -IC:
+\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include --predefine="__EVAL S
+ETA 1" --predefine="__MICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 524"
+ --predefine="_RTE_ SETA 1" --predefine="STM32F10X_MD_VL SETA 1" --list=startup
+_stm32f100xb.lst startup_stm32f100xb.s
 
 
 
