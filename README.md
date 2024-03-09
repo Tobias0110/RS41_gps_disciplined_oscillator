@@ -17,6 +17,7 @@ More information about the RS41 hardware: https://github.com/bazjo/RS41_Hardware
 ## Flashing the radio probe
 
 The hex files that must be programmed to the STM32 microcontroller can be found under:
+
     /MDK-ARM/GPS_clock/GPS_clock.hex
 
 As programming tool a STLink is reaquired.
